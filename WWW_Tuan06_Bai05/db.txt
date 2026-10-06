@@ -1,0 +1,46 @@
+CREATE DATABASE employee_management
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE employee_management;
+
+USE employee_management;
+
+CREATE TABLE departments (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE employees (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    department_id INT NOT NULL,
+    salary DECIMAL(12,2) NOT NULL,
+
+    CONSTRAINT fk_employee_department
+        FOREIGN KEY (department_id)
+        REFERENCES departments(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+
+INSERT INTO departments (name) VALUES
+('Giám Đốc'),
+('Kế Toán'),
+('Phát triển'),
+('Kế hoạch Vật tư'),
+('Phòng Quản Trị'),
+('Nhân sự'),
+('Kinh doanh');
+
+INSERT INTO employees (name, department_id, salary) VALUES
+('Nguyễn Văn An', 1, 25000000),
+('Trần Thị Bình', 2, 15000000),
+('Lê Văn Cường', 2, 14000000),
+('Phạm Minh Đức', 3, 18000000),
+('Hoàng Thị Lan', 3, 17000000),
+('Nguyễn Quốc Huy', 3, 16000000),
+('Trần Văn Nam', 4, 13000000),
+('Lê Thị Hoa', 5, 12000000),
+('Phạm Văn Long', 6, 11000000),
+('Nguyễn Thị Mai', 7, 14000000);
