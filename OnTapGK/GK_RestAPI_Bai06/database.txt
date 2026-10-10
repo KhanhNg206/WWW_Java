@@ -1,0 +1,145 @@
+
+DROP DATABASE IF EXISTS quanlydanhmuc;
+
+CREATE DATABASE quanlydanhmuc
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE quanlydanhmuc;
+
+CREATE TABLE DANHMUC (
+    MADM INT PRIMARY KEY,
+    TENDANHMUC VARCHAR(100) NOT NULL,
+    NGUOIQUANLY VARCHAR(100),
+    GHICHU VARCHAR(255)
+);
+
+CREATE TABLE TINTUC (
+    MATT VARCHAR(20) PRIMARY KEY,
+    TIEUDE VARCHAR(255) NOT NULL,
+    NOIDUNGTT TEXT,
+    LIENKET VARCHAR(500),
+    MADM INT NOT NULL,
+    CONSTRAINT FK_TINTUC_DANHMUC
+        FOREIGN KEY (MADM) REFERENCES DANHMUC(MADM)
+);
+
+INSERT INTO DANHMUC (MADM, TENDANHMUC, NGUOIQUANLY, GHICHU) VALUES
+(1, 'Thời sự', 'Nguyễn Văn An', 'Tin tức thời sự trong nước'),
+(2, 'Giáo dục', 'Trần Thị Bình', 'Tin tức giáo dục và đào tạo'),
+(3, 'Công nghệ', 'Lê Văn Cường', 'Tin tức công nghệ mới'),
+(4, 'Thể thao', 'Phạm Minh Đức', 'Tin tức thể thao'),
+(5, 'Kinh tế', 'Hoàng Thị Hà', 'Tin tức kinh tế và thị trường'),
+(6, 'Giải trí', 'Vũ Quốc Huy', 'Tin tức giải trí và nghệ thuật'),
+(7, 'Sức khỏe', 'Đặng Thu Lan', 'Tin tức sức khỏe cộng đồng'),
+(8, 'Du lịch', 'Bùi Thành Nam', 'Tin tức du lịch trong và ngoài nước'),
+(9, 'Pháp luật', 'Đỗ Minh Phúc', 'Tin tức pháp luật'),
+(10, 'Môi trường', 'Ngô Thị Mai', 'Tin tức môi trường và khí hậu');
+
+INSERT INTO TINTUC (MATT, TIEUDE, NOIDUNGTT, LIENKET, MADM) VALUES
+('TT001', 'Cập nhật tình hình thời sự trong nước', 'Những thông tin nổi bật về tình hình chính trị và xã hội trong nước.', 'https://example.com/tintuc/001', 1),
+('TT002', 'Nhiều chính sách mới được triển khai', 'Các chính sách mới hướng đến cải thiện đời sống người dân.', 'https://example.com/tintuc/002', 1),
+
+('TT003', 'Đổi mới phương pháp giảng dạy', 'Các trường học tăng cường ứng dụng phương pháp giảng dạy hiện đại.', 'https://example.com/tintuc/003', 2),
+('TT004', 'Học sinh tham gia cuộc thi khoa học', 'Nhiều học sinh giới thiệu các sản phẩm sáng tạo tại cuộc thi khoa học.', 'https://example.com/tintuc/004', 2),
+
+('TT005', 'Xu hướng trí tuệ nhân tạo', 'Trí tuệ nhân tạo tiếp tục được ứng dụng trong nhiều lĩnh vực.', 'https://example.com/tintuc/005', 3),
+('TT006', 'Ứng dụng công nghệ trong đời sống', 'Các ứng dụng số giúp nâng cao hiệu quả công việc và sinh hoạt.', 'https://example.com/tintuc/006', 3),
+
+('TT007', 'Giải bóng đá thu hút người hâm mộ', 'Các đội bóng đang chuẩn bị cho những trận đấu quan trọng.', 'https://example.com/tintuc/007', 4),
+('TT008', 'Phong trào thể thao học đường', 'Nhiều trường học tổ chức hoạt động thể thao cho học sinh.', 'https://example.com/tintuc/008', 4),
+
+('TT009', 'Thị trường bán lẻ có nhiều thay đổi', 'Các doanh nghiệp bán lẻ đẩy mạnh hoạt động kinh doanh trực tuyến.', 'https://example.com/tintuc/009', 5),
+('TT010', 'Doanh nghiệp tăng cường chuyển đổi số', 'Nhiều doanh nghiệp đầu tư công nghệ để nâng cao năng suất.', 'https://example.com/tintuc/010', 5),
+
+('TT011', 'Lễ hội âm nhạc thu hút khán giả', 'Nhiều chương trình âm nhạc được tổ chức phục vụ công chúng.', 'https://example.com/tintuc/011', 6),
+('TT012', 'Phim mới ra mắt khán giả', 'Một số bộ phim mới nhận được sự quan tâm của người xem.', 'https://example.com/tintuc/012', 6),
+
+('TT013', 'Khuyến khích duy trì thói quen vận động', 'Hoạt động thể chất thường xuyên góp phần nâng cao sức khỏe.', 'https://example.com/tintuc/013', 7),
+('TT014', 'Nâng cao nhận thức chăm sóc sức khỏe', 'Các chương trình truyền thông giúp cộng đồng chủ động chăm sóc sức khỏe.', 'https://example.com/tintuc/014', 7),
+
+('TT015', 'Khám phá các điểm đến trong nước', 'Nhiều địa phương phát triển sản phẩm du lịch đặc trưng.', 'https://example.com/tintuc/015', 8),
+('TT016', 'Du lịch xanh ngày càng được quan tâm', 'Các mô hình du lịch thân thiện với môi trường được khuyến khích.', 'https://example.com/tintuc/016', 8),
+
+('TT017', 'Tuyên truyền phổ biến pháp luật', 'Các hoạt động phổ biến kiến thức pháp luật được triển khai tại cộng đồng.', 'https://example.com/tintuc/017', 9),
+('TT018', 'Nâng cao ý thức chấp hành pháp luật', 'Người dân được khuyến khích tìm hiểu và tuân thủ quy định pháp luật.', 'https://example.com/tintuc/018', 9),
+
+('TT019', 'Tăng cường bảo vệ môi trường', 'Nhiều hoạt động thu gom rác và bảo vệ môi trường được tổ chức.', 'https://example.com/tintuc/019', 10),
+('TT020', 'Nâng cao nhận thức về biến đổi khí hậu', 'Cộng đồng được khuyến khích sử dụng tài nguyên tiết kiệm và hiệu quả.', 'https://example.com/tintuc/020', 10);
+
+
+USE quanlydanhmuc;
+
+INSERT INTO TINTUC (MATT, TIEUDE, NOIDUNGTT, LIENKET, MADM) VALUES
+-- Danh mục 1: Thời sự (8 tin)
+('TT021', 'Tin thời sự trong nước hôm nay', 'Cập nhật các sự kiện nổi bật trong nước.', 'https://example.com/021', 1),
+('TT022', 'Chính sách phát triển kinh tế xã hội', 'Các chính sách mới hướng đến phát triển xã hội.', 'https://example.com/022', 1),
+('TT023', 'Hoạt động của các cơ quan nhà nước', 'Thông tin về hoạt động quản lý và điều hành.', 'https://example.com/023', 1),
+('TT024', 'Nhiều địa phương triển khai kế hoạch mới', 'Các địa phương triển khai kế hoạch phát triển.', 'https://example.com/024', 1),
+('TT025', 'Cải thiện chất lượng dịch vụ công', 'Nâng cao chất lượng phục vụ người dân.', 'https://example.com/025', 1),
+('TT026', 'Tin tức xã hội đáng chú ý', 'Những vấn đề xã hội được quan tâm.', 'https://example.com/026', 1),
+
+-- Danh mục 2: Giáo dục (5 tin)
+('TT027', 'Tuyển sinh đại học năm học mới', 'Thông tin tuyển sinh và phương thức xét tuyển.', 'https://example.com/027', 2),
+('TT028', 'Ứng dụng công nghệ trong trường học', 'Công nghệ hỗ trợ nâng cao chất lượng dạy học.', 'https://example.com/028', 2),
+('TT029', 'Học sinh tham gia cuộc thi sáng tạo', 'Các dự án sáng tạo của học sinh được giới thiệu.', 'https://example.com/029', 2),
+
+-- Danh mục 3: Công nghệ (7 tin)
+('TT030', 'Xu hướng phát triển trí tuệ nhân tạo', 'AI được ứng dụng trong nhiều lĩnh vực.', 'https://example.com/030', 3),
+('TT031', 'Điện thoại thông minh thế hệ mới', 'Các hãng công nghệ giới thiệu thiết bị mới.', 'https://example.com/031', 3),
+('TT032', 'Bảo mật thông tin trên Internet', 'Các biện pháp bảo vệ dữ liệu cá nhân.', 'https://example.com/032', 3),
+('TT033', 'Điện toán đám mây trong doanh nghiệp', 'Giải pháp lưu trữ và xử lý dữ liệu trực tuyến.', 'https://example.com/033', 3),
+('TT034', 'Công nghệ robot trong sản xuất', 'Robot hỗ trợ tự động hóa dây chuyền sản xuất.', 'https://example.com/034', 3),
+
+-- Danh mục 4: Thể thao (4 tin)
+('TT035', 'Giải bóng đá quốc gia khởi tranh', 'Các đội bóng chuẩn bị cho mùa giải mới.', 'https://example.com/035', 4),
+('TT036', 'Vận động viên đạt thành tích nổi bật', 'Những thành tích đáng chú ý tại giải đấu.', 'https://example.com/036', 4),
+
+-- Danh mục 5: Kinh tế (6 tin)
+('TT037', 'Thị trường hàng hóa có nhiều biến động', 'Cập nhật tình hình thị trường hàng hóa.', 'https://example.com/037', 5),
+('TT038', 'Doanh nghiệp mở rộng hoạt động kinh doanh', 'Nhiều doanh nghiệp tìm kiếm thị trường mới.', 'https://example.com/038', 5),
+('TT039', 'Xu hướng thanh toán không dùng tiền mặt', 'Thanh toán số ngày càng phổ biến.', 'https://example.com/039', 5),
+('TT040', 'Thương mại điện tử tiếp tục phát triển', 'Các nền tảng trực tuyến mở rộng dịch vụ.', 'https://example.com/040', 5),
+
+-- Danh mục 6: Giải trí (3 tin)
+('TT041', 'Chương trình âm nhạc thu hút khán giả', 'Nhiều nghệ sĩ tham gia chương trình âm nhạc.', 'https://example.com/041', 6),
+
+-- Danh mục 7: Sức khỏe (5 tin)
+('TT042', 'Chăm sóc sức khỏe trong mùa nắng nóng', 'Khuyến nghị duy trì thói quen sinh hoạt phù hợp.', 'https://example.com/042', 7),
+('TT043', 'Lợi ích của việc tập thể dục thường xuyên', 'Vận động giúp nâng cao sức khỏe thể chất.', 'https://example.com/043', 7),
+('TT044', 'Tuyên truyền phòng chống bệnh truyền nhiễm', 'Nâng cao nhận thức phòng bệnh trong cộng đồng.', 'https://example.com/044', 7),
+
+-- Danh mục 8: Du lịch (4 tin)
+('TT045', 'Khám phá danh lam thắng cảnh Việt Nam', 'Giới thiệu các điểm đến nổi bật trong nước.', 'https://example.com/045', 8),
+('TT046', 'Phát triển du lịch cộng đồng', 'Các địa phương phát triển sản phẩm du lịch bản địa.', 'https://example.com/046', 8),
+
+-- Danh mục 9: Pháp luật (3 tin)
+('TT047', 'Phổ biến quy định pháp luật mới', 'Cập nhật các quy định pháp luật đáng chú ý.', 'https://example.com/047', 9),
+
+-- Danh mục 10: Môi trường (5 tin)
+('TT048', 'Chiến dịch làm sạch môi trường', 'Các hoạt động thu gom rác tại địa phương.', 'https://example.com/048', 10),
+('TT049', 'Tiết kiệm năng lượng trong sinh hoạt', 'Khuyến khích sử dụng năng lượng hiệu quả.', 'https://example.com/049', 10),
+
+-- Thêm tin tức cho các danh mục để phân bổ đa dạng
+('TT050', 'Cập nhật tình hình giao thông', 'Thông tin giao thông tại các thành phố.', 'https://example.com/050', 1),
+('TT051', 'Nâng cao chất lượng giáo dục nghề nghiệp', 'Các chương trình đào tạo nghề được đổi mới.', 'https://example.com/051', 2),
+('TT052', 'Ứng dụng dữ liệu lớn trong kinh doanh', 'Dữ liệu hỗ trợ doanh nghiệp ra quyết định.', 'https://example.com/052', 3),
+('TT053', 'Phong trào thể thao dành cho thanh thiếu niên', 'Khuyến khích thanh thiếu niên rèn luyện thể thao.', 'https://example.com/053', 4),
+('TT054', 'Doanh nghiệp đầu tư vào thị trường mới', 'Các doanh nghiệp mở rộng hoạt động đầu tư.', 'https://example.com/054', 5),
+('TT055', 'Phim truyền hình mới được giới thiệu', 'Các tác phẩm truyền hình mới ra mắt khán giả.', 'https://example.com/055', 6),
+('TT056', 'Dinh dưỡng hợp lý cho cuộc sống khỏe mạnh', 'Chế độ ăn uống cân bằng giúp cải thiện sức khỏe.', 'https://example.com/056', 7),
+('TT057', 'Du lịch biển thu hút khách tham quan', 'Các điểm đến ven biển chuẩn bị đón khách.', 'https://example.com/057', 8),
+('TT058', 'Tìm hiểu quyền và nghĩa vụ công dân', 'Thông tin phổ biến kiến thức pháp luật.', 'https://example.com/058', 9),
+('TT059', 'Trồng cây xanh tại khu dân cư', 'Hoạt động trồng cây góp phần cải thiện cảnh quan.', 'https://example.com/059', 10),
+
+('TT060', 'Hoạt động tình nguyện vì cộng đồng', 'Các chương trình hỗ trợ người dân có hoàn cảnh khó khăn.', 'https://example.com/060', 1),
+('TT061', 'Phát triển thư viện số trong trường học', 'Thư viện số giúp học sinh tiếp cận tài liệu học tập.', 'https://example.com/061', 2),
+('TT062', 'Xu hướng thiết bị nhà thông minh', 'Các thiết bị kết nối hỗ trợ cuộc sống tiện nghi.', 'https://example.com/062', 3),
+('TT063', 'Giải chạy bộ thu hút đông đảo người tham gia', 'Sự kiện khuyến khích cộng đồng rèn luyện sức khỏe.', 'https://example.com/063', 4),
+('TT064', 'Thúc đẩy hoạt động xuất khẩu hàng hóa', 'Doanh nghiệp tìm kiếm cơ hội tại thị trường quốc tế.', 'https://example.com/064', 5),
+('TT065', 'Triển lãm nghệ thuật thu hút người xem', 'Các tác phẩm nghệ thuật được giới thiệu đến công chúng.', 'https://example.com/065', 6),
+('TT066', 'Chương trình khám sức khỏe cộng đồng', 'Hoạt động tư vấn và chăm sóc sức khỏe người dân.', 'https://example.com/066', 7),
+('TT067', 'Khám phá văn hóa ẩm thực địa phương', 'Ẩm thực truyền thống góp phần quảng bá du lịch.', 'https://example.com/067', 8),
+('TT068', 'Tuyên truyền an toàn giao thông', 'Nâng cao ý thức chấp hành quy định giao thông.', 'https://example.com/068', 9),
+('TT069', 'Phân loại rác thải tại nguồn', 'Khuyến khích phân loại rác để tăng khả năng tái chế.', 'https://example.com/069', 10),
+('TT070', 'Giải pháp giảm thiểu rác thải nhựa', 'Các biện pháp giảm sử dụng nhựa dùng một lần.', 'https://example.com/070', 10);

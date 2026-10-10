@@ -1,0 +1,59 @@
+CREATE DATABASE QUANLYTHUOC
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE QUANLYTHUOC;
+
+CREATE TABLE LOAITHUOC (
+    MALOAI INT PRIMARY KEY,
+    TENLOAI VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE THUOC (
+    MATHUOC INT AUTO_INCREMENT PRIMARY KEY,
+    TENTHUOC VARCHAR(255) NOT NULL,
+    GIA DECIMAL(12, 2) NOT NULL,
+    NAMSX INT,
+    MALOAI INT,
+    ngayBatDauSuDung DATE,
+    ngayHetHanSuDung DATE,
+    FOREIGN KEY (MALOAI) REFERENCES LOAITHUOC(MALOAI)
+);
+
+INSERT INTO LOAITHUOC (MALOAI, TENLOAI) VALUES
+(1, 'Giảm đau'),
+(2, 'Hạ sốt'),
+(3, 'Kháng sinh'),
+(4, 'Kháng viêm'),
+(5, 'Dị ứng/Kháng histamine'),
+(6, 'Vitamin & Khoáng chất'),
+(7, 'Tiêu hóa'),
+(8, 'Hô hấp'),
+(9, 'Tim mạch'),
+(10, 'Đái tháo đường');
+
+INSERT INTO THUOC
+(TENTHUOC, GIA, NAMSX, MALOAI, ngayBatDauSuDung, ngayHetHanSuDung)
+VALUES
+('Paracetamol 500mg', 12000, 2023, 2, '2023-01-01', '2026-12-31'),
+('Efferalgan 500mg', 15000, 2024, 2, '2024-02-01', '2027-02-01'),
+('Ibuprofen 400mg', 18000, 2022, 1, '2022-03-01', '2025-03-01'),
+('Naproxen 250mg', 22000, 2021, 1, '2021-04-01', '2026-04-01'),
+('Amoxicillin 500mg', 35000, 2023, 3, '2023-05-01', '2026-05-01'),
+('Azithromycin 250mg', 56000, 2024, 3, '2024-06-01', '2027-06-01'),
+('Cefuroxime 250mg', 72000, 2024, 3, '2024-07-01', '2027-07-01'),
+('Prednisolone 5mg', 24000, 2022, 4, '2022-08-01', '2025-08-01'),
+('Diclofenac 50mg', 26000, 2023, 4, '2023-09-01', '2026-09-01'),
+('Loratadine 10mg', 17000, 2024, 5, '2024-01-01', '2027-01-01'),
+('Cetirizine 10mg', 16000, 2023, 5, '2023-02-01', '2026-02-01'),
+('Vitamin C 1000mg', 20000, 2024, 6, '2024-03-01', '2027-03-01'),
+('Vitamin D3 1000 IU', 23000, 2023, 6, '2023-04-01', '2026-04-01'),
+('Kẽm Gluconate 70mg', 19000, 2022, 6, '2022-05-01', '2025-05-01'),
+('Omeprazole 20mg', 28000, 2024, 7, '2024-06-01', '2027-06-01'),
+('Domperidone 10mg', 21000, 2023, 7, '2023-07-01', '2026-07-01'),
+('Acetylcysteine 200mg', 25000, 2024, 8, '2024-08-01', '2027-08-01'),
+('Dextromethorphan 15mg', 14000, 2023, 8, '2023-09-01', '2026-09-01'),
+('Amlodipine 5mg', 30000, 2023, 9, '2023-10-01', '2026-10-01'),
+('Losartan 50mg', 35000, 2022, 9, '2022-11-01', '2025-11-01'),
+('Metformin 500mg', 27000, 2024, 10, '2024-01-01', '2027-01-01'),
+('Gliclazide MR 30mg', 42000, 2023, 10, '2023-12-01', '2026-12-01');
